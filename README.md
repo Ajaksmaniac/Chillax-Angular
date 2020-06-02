@@ -1,6 +1,6 @@
 # Chillax
 
-Web application made for searching places for relaxation.
+Web application made for searching places for entertainment and stay.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.1.
 
