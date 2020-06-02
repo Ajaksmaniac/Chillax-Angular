@@ -1,7 +1,8 @@
 # Chillax
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.1.
 Web application made for searching places for relaxation.
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.1.
 
 ## Development server
 Run `npm install` to download node_modules before starting the server.
