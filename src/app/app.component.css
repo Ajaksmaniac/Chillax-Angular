@@ -1,0 +1,20 @@
+.example-icon {
+    padding: 0 14px;
+  }
+  
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  .mat-select{
+    width: 100px;
+    width: fit-content !important;
+}
+.home-icon{
+    transform: scale(3);
+    margin-left: 50px;
+    margin-top: 5px;
+}
+.search-input{
+    width:100px;
+    
+}

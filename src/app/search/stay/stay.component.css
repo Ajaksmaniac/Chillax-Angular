@@ -1,0 +1,18 @@
+.example-card {
+    max-width: 270px;
+    max-height: 370px;
+    margin:40px;;
+  }
+  
+  
+  
+  .card-image{
+    max-width: 270px;
+    max-height: 270px;
+    margin:10px;
+  }
+  .search-section{
+    
+    height: auto;
+    margin: 0;
+  }

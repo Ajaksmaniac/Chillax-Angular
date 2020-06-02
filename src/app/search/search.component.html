@@ -1,0 +1,29 @@
+
+    <mat-toolbar  fxFlexAlign="center" color="warn" fxLayoutAlign="center">
+        <p fxFlex fxLayoutAlign="start"style="margin:15px;">Pick you type of chill</p>
+        <form  fxLayout="row"  fxFlex fxLayoutAlign="center center" #f="ngForm" (ngSubmit)="searchByRelaxationName(f)">
+          <mat-form-field style="width:400px !important" >
+            <input type="text" matInput ngModel name="relaxationName" placeholder="Search" #relaxationNameInput="ngModel" >
+            
+          </mat-form-field>
+    
+          
+    
+          <button style="margin:15px;" type="submit" mat-button color="primary"  >Search</button>
+    
+      </form>
+       
+      </mat-toolbar>
+      
+      <mat-tab-group  fxFlexAlign="vertical" >
+        <mat-tab label="Attractions" fxFlex fxFlexAlign="center">
+            <app-entertainment fxFlex fxFlexAlign="horizontal"></app-entertainment>
+        </mat-tab>
+        <mat-tab label="Stays">
+           <app-stay  fxFlex fxFlexAlign="horizontal"> </app-stay>
+        </mat-tab>
+        
+    
+    
+    </mat-tab-group>
+

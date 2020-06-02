@@ -1,0 +1,18 @@
+-Napraviti stranicu mesta za relaksaciju
+    +Dodati posebne dodatke na stranicu mesta:
+        Bazen
+        Parking
+        dozvoljeni ljubimci
+        restoran(Samo za tipove stay)
+        bazeni(samo za tipove stay)
+-Dodati posebne dodatke u model mesta:
+        Bazen
+        Parking
+        dozvoljeni ljubimci
+        restoran(Samo za tipove stay)
+        bazeni(samo za tipove stay)
+-dodati mesta za relaksaciju pod atrakcijama - zavrseno
+-dodati custom search - zavrseno
+-Dodati AuthModule
+-dodati broj datih tipova relaksacija u okoloni  u search karticama
+-Pod AuthModulom trebamo cuvati posecena ili favorites mesta za relaksaciju

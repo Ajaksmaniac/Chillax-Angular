@@ -1,0 +1,35 @@
+.item-page-section{
+    margin-left: 300px;
+    margin-right: 300px;
+    margin-top: 100px;
+    border-top: 3px solid #A43224;
+    border-bottom: 3px solid #A43224;
+    border-radius: 40px 40px 40px 40px;
+    /*background-color: lightyellow;*/
+    height: 700px;
+    margin-bottom: 300px;
+}
+#post-image{
+
+
+    width: 600px;
+     height: 350px;
+     margin-top: 100px;
+     margin-left: 50px;
+
+}
+#post-description{
+    margin-top: 100px;
+    margin-left: 50px;
+}
+#post-image > img{
+
+
+    width: 500px;
+     height: 350px;
+     
+     align-content: flex-start;
+     border-top: 6px solid rgba(94,10,164,0.75);
+     border-left: 6px solid rgba(94,10,164,0.75);
+     border-radius: 40px 40px 40px 40px;
+}

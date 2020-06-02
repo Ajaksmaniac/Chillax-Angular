@@ -1,0 +1,26 @@
+<!-- 
+Login komponenta:
+1 - dodati email i password polja
+2 - dodati validaciju
+3 - prikazati greske i smernice za username i password
+4 - dodati submit dugme i neka takodje bude dugme nekativno ukoliko forma nije validna 
+-->
+
+<section>
+    <form fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center" #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <mat-form-field>
+            <input type="email" matInput placeholder="Your name" ngModel name="email" email required #emailInput="ngModel">
+            <mat-error *ngIf="emailInput.hasError('required')">Field should not be left empty.</mat-error>
+            <mat-error *ngIf="!emailInput.hasError('required')">Plese provide correct email format.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field hintLabel="Please provide minimum 6 characters">
+            <input type="password" matInput placeholder="Your password" ngModel name="password" required minlength="8" #lzInput="ngModel">
+            <mat-hint align="end">{{ lzInput.value?.length }} / 8</mat-hint>
+        </mat-form-field>
+
+        <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid">Submit</button>
+
+    </form>
+
+</section>

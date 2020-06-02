@@ -1,0 +1,129 @@
+
+<!-- Angular dugme primer -->
+
+<!-- <section>
+  <button mat-raised-button color="primary">Klikni na dugme</button>
+
+    <mat-icon>home</mat-icon>
+</section> -->
+
+<!-- 
+
+  flex kontejner definišemo> display: flex
+  GLAVNA OSA> flex-direction (definise glavnu osu - main-axis), podrazumevana vrednost je row
+  corss-axis - upravna osa (normalna na glavnu osu)
+  justify-content pozicionira elemente u odnosu na glavnu osu
+  align-items - pozicionira elemente u odnosu na upravnu osu
+  fxLayout - definise da li ce biti kolona ili red (unutar template-a)
+ -->
+
+<!-- 
+<section id="container">
+  <div id="child1" class="child"></div>
+  <div id="child2" class="child"></div>
+  <div id="child3" class="child"></div>
+</section>
+
+ -->
+
+ <mat-sidenav-container>
+    <mat-sidenav #sidenav opened="false">
+      <mat-nav-list fxLayoutGap="20px">
+        <a mat-list-item routerLink="/signup" (click)="sidenav.close()">
+          <mat-icon>face</mat-icon>
+          Signup
+        </a>
+        <a mat-list-item routerLink="/login" (click)="sidenav.close()">
+          <mat-icon>input</mat-icon>
+          Login
+        </a>
+        <a mat-list-item routerLink="/training" (click)="sidenav.close()">
+          <mat-icon>fitness_center</mat-icon>
+          Training
+        </a>
+        <a mat-list-item routerLink="/" (click)="sidenav.close()">
+          <mat-icon>exit_to_app</mat-icon>
+          Logout
+        </a>
+        <span  mat-list-item class="material-icons">
+          
+          <mat-select >
+           
+        
+          <mat-option value ="booking">
+            My bokings
+        </mat-option>
+          <mat-option value ="setting">
+              Settings
+          </mat-option>
+         
+          <mat-option value ="logout">
+              Logout
+          </mat-option>
+
+          </mat-select>
+          account_circle
+          </span>
+          My Profile
+      </mat-nav-list>
+     
+        
+    </mat-sidenav>
+  
+    <mat-sidenav-content fxFlex fxFlexAlign="vertical">
+      <mat-toolbar color="primary" >
+        <!-- Za ekrane vece od 600px nece biti vidljiva ikonica za navbar fxHide.gt-xs -->
+        <div fxHide.gt-xs>
+          <button mat-button color="warn" (click)="sidenav.toggle()">
+          <mat-icon >menu</mat-icon>
+        </button></div>
+        <div>
+         
+          <img style="width: 150px;height: 50px; margin-top: 5px;" src="assets/img/logo.png"/>
+        </div>
+        
+        <!-- Za manje ekrane od 600px sirine sakriva linkove fxHide.xs -->
+     
+
+        <div fxFlex fxLayoutAlign="center"  fxHide.xs> 
+          
+           
+          <a mat-button  routerLink="/">Home</a>
+          <a mat-button   routerLink="/signup">Signup</a>
+          <a mat-button   routerLink="/about">About us</a>
+          <a mat-button   routerLink="/login">Login</a>
+     
+          <a mat-button   routerLink="/search">Search places</a>
+         
+         
+        </div>
+        <span  mat-list-item class="material-icons"  fxFlex fxLayoutAlign="end"  fxHide.xs>
+            
+          <mat-select panelClass="profile-select-panel" color="warn">
+          
+           
+          <mat-option value ="booking">
+            My bokings
+        </mat-option>
+          <mat-option value ="setting">
+              Settings
+          </mat-option>
+          
+         
+      <mat-option value ="logout">
+        Logout
+    </mat-option>
+
+          </mat-select>
+          account_circle
+          </span>
+          
+       
+      </mat-toolbar>
+      
+      <router-outlet></router-outlet>
+     <!--<app-footer></app-footer>--> 
+    </mat-sidenav-content>
+   
+  </mat-sidenav-container>
+  
