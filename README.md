@@ -19,7 +19,10 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ##To be added
 
 +Authentication
+
 +User Setting
+
 +Adding places to favorites
+
 +rating places
 
