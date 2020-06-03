@@ -35,6 +35,7 @@ import { ZoosComponent } from './search/entertainment/zoos/zoos.component';
 import { CoffeeShopsComponent } from './search/entertainment/coffee-shops/coffee-shops.component';
 import { CustomSearchComponent } from './search/custom-search/custom-search.component';
 import { ItemPageComponent } from './search/item-page/item-page.component';
+import { UserServiceModule } from './auth/user-service.module';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { ItemPageComponent } from './search/item-page/item-page.component';
     CustomSearchComponent,
     ItemPageComponent
    
+   
   
   ],
   imports: [
@@ -70,10 +72,11 @@ import { ItemPageComponent } from './search/item-page/item-page.component';
     BrowserAnimationsModule,
     FlexLayoutModule,
     FormsModule,
-    StarRatingModule,
+    StarRatingModule
+ 
     
   ],
-  providers: [PostsService],
+  providers: [PostsService, UserServiceModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

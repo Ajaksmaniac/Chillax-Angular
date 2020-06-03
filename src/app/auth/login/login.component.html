@@ -6,10 +6,11 @@ Login komponenta:
 4 - dodati submit dugme i neka takodje bude dugme nekativno ukoliko forma nije validna 
 -->
 
+
 <section>
     <form fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center" #f="ngForm" (ngSubmit)="onSubmit(f)">
         <mat-form-field>
-            <input type="email" matInput placeholder="Your name" ngModel name="email" email required #emailInput="ngModel">
+            <input type="email" matInput placeholder="Your email" ngModel name="email" email required #emailInput="ngModel">
             <mat-error *ngIf="emailInput.hasError('required')">Field should not be left empty.</mat-error>
             <mat-error *ngIf="!emailInput.hasError('required')">Plese provide correct email format.</mat-error>
         </mat-form-field>
@@ -20,6 +21,11 @@ Login komponenta:
         </mat-form-field>
 
         <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid">Submit</button>
+
+        <mat-label *ngIf="errorExists">{{ errorText }} </mat-label>
+
+        <a routerLink = "/signup">Dont have an account?</a>
+
 
     </form>
 
