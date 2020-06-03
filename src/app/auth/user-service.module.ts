@@ -9,6 +9,7 @@ import { Observable, Subject, BehaviorSubject } from 'rxjs';
 export interface User{
   id:number;
   email:string;
+  name: string;
   password:string;
   date: Date;
   favorites?: Array<Number>;//IDs of favorite posts
@@ -44,7 +45,9 @@ export class UserServiceModule {
   }
   static dummyUserList: Array<User> = [
     {
+
       id:1,
+      name: "test",
       email: "test@test.com",
       password: "test123456",
       date: new Date("2020-05-29 10:03"),
@@ -52,6 +55,7 @@ export class UserServiceModule {
     },
     {
       id:2,
+      name: "test2",
       email: "test1@test.com",
       password: "test123456",
       date: new Date("2020-05-29 10:03"),
@@ -59,6 +63,7 @@ export class UserServiceModule {
     },
     {
       id:3,
+      name: "admin",
       email: "admin@admin.com",
       password: "admin1234",
       date: new Date("2019-12-25 10:03"),
@@ -93,7 +98,7 @@ export class UserServiceModule {
     return UserServiceModule.dummyUserList.find(userToFind => (userToFind.email == userEmail && userToFind.password == password)) != undefined;
   }
 
-  registerUser(email:string,password:string, date:Date) : User{
+  registerUser(email:string,password:string, date:Date, name:string) : User{
     var maxId = 0;
     UserServiceModule.dummyUserList.forEach(user => {
       if(maxId < user.id){
@@ -101,7 +106,7 @@ export class UserServiceModule {
       }
     });
     var id = ++maxId;
-    var user : User = {id,email,password,date};
+    var user : User = {id,email,password,date,name};
     UserServiceModule.dummyUserList.push(user);
 
     console.log(user);
