@@ -18,3 +18,14 @@
     width:100px;
     
 }
+
+
+.mat-select-panel {
+  max-height: 800px !important;
+}
+
+.material-icons{
+  max-width: 800px !important; 
+}
+.mat-autocomplete-panel { max-height: 755px !important; }
+.mat-option { height: 50px !important; line-height: 200px !important; }

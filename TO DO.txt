@@ -1,18 +1,40 @@
 -Napraviti stranicu mesta za relaksaciju
-    +Dodati posebne dodatke na stranicu mesta:
-        Bazen
+    +Dodati posebne dodatke na stranicu mesta: -DONE
+       
         Parking
         dozvoljeni ljubimci
         restoran(Samo za tipove stay)
         bazeni(samo za tipove stay)
--Dodati posebne dodatke u model mesta:
-        Bazen
+-Dodati posebne dodatke u model mesta: - DONE
+        
         Parking
         dozvoljeni ljubimci
         restoran(Samo za tipove stay)
         bazeni(samo za tipove stay)
--dodati mesta za relaksaciju pod atrakcijama - zavrseno
--dodati custom search - zavrseno
--Dodati AuthModule
--dodati broj datih tipova relaksacija u okoloni  u search karticama
--Pod AuthModulom trebamo cuvati posecena ili favorites mesta za relaksaciju
+
+-Dodati booking model podataka(rezervacija mesta) - DONE
+        *id rezervacije
+        *mesto za relaksaciju
+        *od do 
+
+-dodati mesta za relaksaciju pod atrakcijama - DONE
+-dodati custom search - DONE
+-Dodati AuthModule - DONE
+        zavrsiti logout - DONE
+        napraviti favorites stranicu - DONE
+        napraviti booking stranicu(sve rezervisane lokacije) - DONE
+        napraviti settings stranicu - DONE
+                general details
+                email settings
+                change password
+                close account(DELETE ACCOUNT)
+
+-Pod AuthModulom trebamo cuvati posecena ili favorites mesta za relaksaciju -DONE
+
+-dodati lokaciju korisnika i njegova intereseovanja - DONE
+-napraviti Reccomended stranicu gde ce se korisniku
+ prikazivati mesta za relaksaciju na osnovu jegove lokacije - DONE
+
+
+-dodati broj datih tipova relaksacija u okoloni  u search karticama - DONE
+-napraviti edit sa predstojece rezervacije(promena datuma i rating) - DONE

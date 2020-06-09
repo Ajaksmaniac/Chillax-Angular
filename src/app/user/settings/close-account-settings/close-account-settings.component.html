@@ -1,0 +1,36 @@
+<section>
+ 
+    
+       
+           
+    <form  #f="ngForm" (ngSubmit)="onSubmit(f)" id="change-password-form" fxLayoutAlign="center center" fxLayout="column">
+        <span class="material-icons">
+            delete_forever
+            </span>
+       
+            <mat-form-field class="form-field"  >
+                <input  matInput type="password" placeholder="Enter your current password" ngModel name="password" required >
+            </mat-form-field>
+
+         
+
+            <mat-form-field class="form-field">
+                <input matInput type="password" placeholder="Repeat  password"  ngModel name="passwordRepeat"   required>
+            </mat-form-field>
+            <mat-label *ngIf="errorExists">{{ errorText }} </mat-label>
+
+
+        <mat-checkbox   color="primary" ngModel name="acceptance" required>
+          Yes, i want to change this data.
+        </mat-checkbox>
+      
+        <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid">Submit</button>
+
+        
+
+    </form>
+
+
+
+
+</section>

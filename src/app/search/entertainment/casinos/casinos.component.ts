@@ -36,5 +36,5 @@ export class CasinosComponent implements OnInit, AfterViewInit {
   }
   goToPage(id){
     this.router.navigate(['search/page',id])
-}
+  }
 }

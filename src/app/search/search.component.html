@@ -23,7 +23,9 @@
            <app-stay  fxFlex fxFlexAlign="horizontal"> </app-stay>
         </mat-tab>
         
-    
+        <mat-tab *ngIf="this.logged == true" label="Recommended">
+          <app-recommended  fxFlex fxFlexAlign="horizontal"> </app-recommended>
+       </mat-tab>
     
     </mat-tab-group>
 

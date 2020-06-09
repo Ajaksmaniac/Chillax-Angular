@@ -1,0 +1,14 @@
+#email-settings-form{
+  
+    height: 400px;
+}
+.material-icons {
+    font-size: 100px;
+    color: black;
+    background-color: white;
+   
+   
+}
+.form-field{
+    padding:20px;;
+}

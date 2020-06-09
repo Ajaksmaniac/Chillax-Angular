@@ -5,7 +5,7 @@
         <mat-card-title>Casino</mat-card-title>
     </mat-card-header>
     <img mat-card-image src="assets/img/casino.jpg" alt="Photo of Casino"> 
-    <mat-card-subtitle>53 Casinos in you area</mat-card-subtitle>
+    <mat-card-subtitle>{{getNumberOfPlaces('casino')}} Casinos in you area</mat-card-subtitle>
   </mat-card>
 
   <mat-card routerLink="/search/parks" class="example-card" fxFlex="300px" appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="16">
@@ -13,7 +13,7 @@
       <mat-card-title>Parks</mat-card-title> 
     </mat-card-header>
     <img mat-card-image  src="assets/img/park.jpg" alt="Photo of Park">
-    <mat-card-subtitle>96 Parks in you area</mat-card-subtitle>
+    <mat-card-subtitle>{{getNumberOfPlaces('park')}} Parks in you area</mat-card-subtitle>
   </mat-card>
 
   <mat-card routerLink="/search/pubs" class="example-card" fxFlex="300px" appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="16">
@@ -21,7 +21,7 @@
       <mat-card-title>Pubs</mat-card-title> 
     </mat-card-header>
     <img mat-card-image  src="assets/img/pub.jpg" alt="Photo of Pub">
-    <mat-card-subtitle>134 Pubs in you area</mat-card-subtitle>
+    <mat-card-subtitle>{{getNumberOfPlaces('pubs')}} Pubs in you area</mat-card-subtitle>
   </mat-card>
   </section>
 
@@ -33,7 +33,7 @@
       <mat-card-title>Restaurants</mat-card-title> 
     </mat-card-header>
     <img mat-card-image  src="assets/img/restaurant.jpg" alt="Photo of Restaurant">
-    <mat-card-subtitle>23 Restaurants in you area</mat-card-subtitle>
+    <mat-card-subtitle>{{getNumberOfPlaces('restaurant')}} Restaurants in you area</mat-card-subtitle>
   </mat-card>
 
   <mat-card routerLink="/search/zoos" class="example-card" fxFlex="300px" appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="16">
@@ -41,7 +41,7 @@
       <mat-card-title>Zoo's</mat-card-title> 
     </mat-card-header>
     <img mat-card-image  src="assets/img/zoo.jpg" alt="Photo of Zoo">
-    <mat-card-subtitle>3 Zoo's in you area</mat-card-subtitle>
+    <mat-card-subtitle>{{getNumberOfPlaces('zoo')}} Zoo's in you area</mat-card-subtitle>
   </mat-card>
 
   <mat-card routerLink="/search/coffee-shops" class="example-card" fxFlex="300px" appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="16">
@@ -49,7 +49,7 @@
       <mat-card-title>Coffee Shops</mat-card-title> 
     </mat-card-header>
     <img mat-card-image  src="assets/img/coffe-shop.jpg" alt="Photo of Coofe shop">
-    <mat-card-subtitle>71 Coffee Shops in you area</mat-card-subtitle>
+    <mat-card-subtitle>{{getNumberOfPlaces('coffe shop')}} Coffee Shops in you area</mat-card-subtitle>
   </mat-card>
 
   </section>

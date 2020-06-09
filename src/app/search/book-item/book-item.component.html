@@ -1,0 +1,30 @@
+<section>
+    <h1 mat-dialog-title>Book {{recievedData.name}}</h1>
+    <p>For {{ recievedData.price }} Per night?</p>
+    <mat-dialog-content>
+        
+    <form   #f="ngForm"> <mat-form-field>
+        <input matInput placeholder="From Date" [matDatepicker]="picker1" [(ngModel)]="recievedData.fromDate" name="fromDate" required>
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+
+
+    <mat-form-field>
+        <input matInput placeholder="To Date" [matDatepicker]="picker" [(ngModel)]="recievedData.toDate" name="toDate" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field></form>
+           
+        
+        
+        <mat-dialog-actions>
+            <button type="submit"mat-button mat-button  [disabled]="f.invalid" [mat-dialog-close]="recievedData">Book</button>
+            <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+    
+        </mat-dialog-actions>
+    </mat-dialog-content>
+    
+
+   
+</section>

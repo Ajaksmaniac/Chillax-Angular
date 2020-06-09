@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PostsService } from '../post.servise';
 
 @Component({
   selector: 'app-stay',
@@ -8,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 export class StayComponent implements OnInit {
   defaultElevation = 2;
   raisedElevation = 8;
-  constructor() { }
+  constructor(private postService : PostsService) { }
 
   ngOnInit(): void {
   }
-
+  getNumberOfPlaces(sybtype: string) : Number{
+    var count = 0;
+    this.postService.posts.forEach(element =>{
+      if(element.subtype == sybtype){
+        count++;
+      }
+      
+    })
+    return count;
+  }
 }

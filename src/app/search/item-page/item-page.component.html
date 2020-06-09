@@ -16,12 +16,47 @@
         </div>
         
         <div id="post-description" fxLayout="column" fxLayoutAlign="start start" >
+            <span *ngIf="logged">
+                <button *ngIf="!inList" mat-button color="accent" (click)="addToFavorites()"><mat-icon>star-border</mat-icon> Add to favorites</button>
+                <button *ngIf="inList" mat-button color="accent"  (click)="removeFromFavorites()"><mat-icon>star-border</mat-icon> Remove from favorites</button>
+            </span>
             
                 <app-star-rating  style="width:200px; height: 100px;" [rating]="post.rating" [isEditable] = "false" [dataSet] = "dataSet"></app-star-rating>
             
             <h1>{{post.name}}</h1>
             <h1>Date of Opening {{post.date.getFullYear()}}</h1>
-            
+            <span fxLayout="row">
+                <mat-icon>local_parking</mat-icon>
+                <p >{{parking}}</p>
+                
+            </span>
+            <span fxLayout="row">
+                <mat-icon>pets</mat-icon>
+                <p >{{pets}}</p>
+                
+            </span>
+            <span *ngIf="this.post.type === 'stay' " fxLayout="row">
+                <mat-icon>restaurant</mat-icon>
+                <p >{{restaurant}}</p>
+                
+            </span>
+            <span *ngIf="this.post.type === 'stay'" fxLayout="row">
+                <mat-icon>pool</mat-icon>
+                <p >{{swimingPool}}</p>
+                
+            </span>
+            <span *ngIf="this.post.type === 'stay'" fxLayout="row">
+                <mat-icon>euro_symbol</mat-icon>
+                <p >{{post.price}} Per night</p>
+                
+            </span>
+            <span  *ngIf="logged == false  && this.post.type === 'stay'"><button mat-raised-button  mat-button color="warn"  disabled> Book this place</button>
+                <p>Please Login or Signup to book this place</p></span>
+           <span *ngIf="logged == true && this.post.type === 'stay'"><button  mat-raised-button  mat-button color="warn" (click)="openDialog()" > Book this place</button></span> 
         </div>
-       
+       <ng-template #notAlowed>
+           Not Alowed
+       </ng-template>
+      
   </section>
+  

@@ -10,4 +10,10 @@ export interface Post{
     price?: Number;
     picture : string;
     rating: number;
+    swimingPool?: boolean;
+    parking?: boolean;
+    pets?: boolean;
+    restaurant? : boolean;
+    location: string;
+    
 }

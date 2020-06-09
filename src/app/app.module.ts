@@ -10,7 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 /* import { MatIconModule } from '@angular/material/icon'; */
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { SignupComponent } from './auth/signup/signup.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -36,7 +36,16 @@ import { CoffeeShopsComponent } from './search/entertainment/coffee-shops/coffee
 import { CustomSearchComponent } from './search/custom-search/custom-search.component';
 import { ItemPageComponent } from './search/item-page/item-page.component';
 import { UserServiceModule } from './auth/user-service.module';
-
+import { FavoritesComponent } from './user/favorites/favorites.component';
+import { BookItemComponent } from './search/book-item/book-item.component';
+import { BookingsComponent } from './user/bookings/bookings.component';
+import { SettingsComponent } from './user/settings/settings.component';
+import { GeneralSettingsComponent } from './user/settings/general-settings/general-settings.component';
+import { EmailSettingsComponent } from './user/settings/email-settings/email-settings.component';
+import { ChangePasswordSettingsComponent } from './user/settings/change-password-settings/change-password-settings.component';
+import { CloseAccountSettingsComponent } from './user/settings/close-account-settings/close-account-settings.component';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
+import { RecommendedComponent } from './search/recommended/recommended.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +69,19 @@ import { UserServiceModule } from './auth/user-service.module';
     CoffeeShopsComponent,
     MaterialElevationDirective,
     CustomSearchComponent,
-    ItemPageComponent
+    ItemPageComponent,
+    FavoritesComponent,
+    BookItemComponent,
+    BookingsComponent,
+    SettingsComponent,
+    GeneralSettingsComponent,
+    EmailSettingsComponent,
+    ChangePasswordSettingsComponent,
+    CloseAccountSettingsComponent,
+    RecommendedComponent
+
+
+
    
    
   
@@ -72,12 +93,15 @@ import { UserServiceModule } from './auth/user-service.module';
     BrowserAnimationsModule,
     FlexLayoutModule,
     FormsModule,
-    StarRatingModule
- 
+    StarRatingModule,
+    ReactiveFormsModule,
+    AngularMultiSelectModule,
+    
     
   ],
   providers: [PostsService, UserServiceModule],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [BookItemComponent]
 })
 export class AppModule { }
 

@@ -17,6 +17,14 @@ import { ZoosComponent } from './search/entertainment/zoos/zoos.component';
 import { CoffeeShopsComponent } from './search/entertainment/coffee-shops/coffee-shops.component';
 import { CustomSearchComponent } from './search/custom-search/custom-search.component';
 import { ItemPageComponent } from './search/item-page/item-page.component';
+import { FavoritesComponent } from './user/favorites/favorites.component';
+import { BookItemComponent } from './search/book-item/book-item.component';
+import { BookingsComponent } from './user/bookings/bookings.component';
+import { SettingsComponent } from './user/settings/settings.component';
+import { GeneralSettingsComponent } from './user/settings/general-settings/general-settings.component';
+import { EmailSettingsComponent } from './user/settings/email-settings/email-settings.component';
+import { ChangePasswordSettingsComponent } from './user/settings/change-password-settings/change-password-settings.component';
+import { CloseAccountSettingsComponent } from './user/settings/close-account-settings/close-account-settings.component';
 const routes: Routes = [
 
   { path: 'signup', component: SignupComponent },
@@ -35,7 +43,12 @@ const routes: Routes = [
   { path: 'search/zoos', component: ZoosComponent },
   { path: 'search/coffee-shops', component: CoffeeShopsComponent },
   { path: 'search/:name', component: CustomSearchComponent },
-  { path: 'search/page/:id', component: ItemPageComponent }
+  { path: 'search/page/:id', component: ItemPageComponent },
+  { path: 'favorites', component: FavoritesComponent },
+  { path: 'bookings', component: BookingsComponent },
+  { path: 'settings', component: SettingsComponent }
+ 
+
 
 
   

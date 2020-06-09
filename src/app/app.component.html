@@ -95,22 +95,16 @@
          
          
         </div>
-        <span  *ngIf="logged" mat-list-item class="material-icons"  fxFlex fxLayoutAlign="end"  fxHide.xs>
+        <span  *ngIf="logged" mat-list-item class="material-icons"   fxLayoutAlign="right"  fxHide.xs>
             
-          <mat-select  panelClass="profile-select-panel" color="warn">
-          
-           <p>{{currentUser.name}}</p>
-          <mat-option value ="booking">
-            My bokings
-        </mat-option>
-          <mat-option value ="setting">
-              Settings
-          </mat-option>
-          
-         
-      <mat-option value ="logout">
-        Logout
-    </mat-option>
+          <mat-select>
+            <p fxLayoutAlign="center center"><mat-icon >face</mat-icon></p>
+          <p fxLayoutAlign="center center">{{currentUser.firstName}}</p>
+          <p fxLayoutAlign="center center">{{currentUser.email}}</p>
+          <mat-option routerLink="favorites" value ="favorites"><mat-icon>stars</mat-icon> My favorites</mat-option>
+         <mat-option routerLink="bookings" value ="bookings"><mat-icon>bookmarks</mat-icon> My bokings</mat-option>
+          <mat-option  routerLink="settings" value ="setting"><mat-icon>settings</mat-icon>Settings</mat-option>
+          <mat-option (click)="logout()"  value ="logout"><mat-icon>exit_to_app</mat-icon>Logout</mat-option>
 
           </mat-select>
           account_circle
@@ -125,4 +119,11 @@
     </mat-sidenav-content>
    
   </mat-sidenav-container>
+  <!--
+    Show only on first page, or if number of children on route is 0
+  -->
+  <section *ngIf="route.children.length === 0" fxLayoutAlign="center">
+    <img  src="../assets/img/meditation.jpg" style="width: 100%;">
+  </section>
+  
   

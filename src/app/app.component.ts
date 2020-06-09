@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { LoginComponent } from './auth/login/login.component';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserServiceModule, User } from './auth/user-service.module';
 
 
@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   logged : boolean = false;;
   currentUser : User = null;
 
-  constructor(private userService: UserServiceModule){
+  constructor(private userService: UserServiceModule, public route: ActivatedRoute, public router : Router){
    
   }
   ngOnInit(): void {
@@ -26,7 +26,11 @@ export class AppComponent implements OnInit {
 
   
   
- 
+ logout(){
+   this.userService.logout();
+   this.router.navigate(['']);
+ }
+
 
 
   

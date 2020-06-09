@@ -1,0 +1,65 @@
+<mat-toolbar  fxFlexAlign="center" color="warn" fxLayoutAlign="center">
+    <p fxFlex fxLayoutAlign="start"style="margin:15px;">Villas</p>
+    
+      
+   
+  </mat-toolbar>
+  <div  fxLayoutAlign="center center" *ngIf="this.currentUser.bookings.length > 0; else noBookings">
+    <mat-form-field fxFlex="25%" >
+    <!--
+        keyup: otpusta taster tastature 
+        doFilter: prihvata ono sto je korisnik uneo preko objekta dogadjaja ($event.target.value) generisanog u pozadini
+    -->
+        <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
+       
+  
+    </mat-form-field>
+    <mat-paginator [pageSize] = "10" [pageSizeOptions]="[2,4,6,10,20,100]"></mat-paginator>
+  </div>
+  <mat-table [dataSource]="postsSource" matSort  *ngIf="this.currentUser.bookings.length > 0; else noBookings">
+    <!-- definicija sablona kolone table kao zaglavlje kolone (odgovara header-u) i vrednost celije kolone -->
+   
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header >Name</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.place.name }}</mat-cell>
+  </ng-container>
+  
+  
+  
+  
+    <ng-container matColumnDef="date">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header >Dates Booked</mat-header-cell>
+        <mat-cell *matCellDef="let element"> From {{ element.fromDate | date }} To {{element.toDate | date}} </mat-cell>
+    </ng-container>
+    
+    <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header >Price</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.price }}<span class="material-icons">
+            euro_symbol
+            </span></mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="active">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header >Is Active</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.active }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="rating">
+    <mat-header-cell *matHeaderCellDef  mat-sort-header >Rating</mat-header-cell>
+    <td mat-cell *matCellDef="let element">
+      <app-star-rating fxFlex="270px"[rating]="element.place.rating" [isEditable] = "true" [dataSet] = "dataSet"></app-star-rating>
+    </td>
+    
+</ng-container>
+  
+   
+    
+  
+    <!-- Definicija reda tabele kao red zaglavlja tabele (header)
+        pozivamo i redove podataka - automatski, na osnovu vrednosti celija
+    -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row (click)="goToPage(rows.place.id)" *matRowDef="let rows; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  
+  <ng-template #noBookings >
+    You currently doesn't have any bookings.
+  </ng-template>

@@ -1,0 +1,65 @@
+<mat-toolbar  fxFlexAlign="center" color="accent" fxLayoutAlign="center">
+    <p fxFlex fxLayoutAlign="start"style="margin:15px;">Searched by : {{currentUser.location}} And {{currentUser.likes}} </p>
+    
+      
+   
+  </mat-toolbar>
+  <div  fxLayoutAlign="center center">
+    <mat-form-field fxFlex="25%">
+    <!--
+        keyup: otpusta taster tastature 
+        doFilter: prihvata ono sto je korisnik uneo preko objekta dogadjaja ($event.target.value) generisanog u pozadini
+    -->
+        <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
+       
+  
+    </mat-form-field>
+    <mat-paginator [pageSize] = "10" [pageSizeOptions]="[2,4,6,10,20,100]"></mat-paginator>
+  </div>
+  <mat-table [dataSource]="postsSource" matSort>
+    <!-- definicija sablona kolone table kao zaglavlje kolone (odgovara header-u) i vrednost celije kolone -->
+    <ng-container matColumnDef="picture">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header >Picture</mat-header-cell>
+      <td mat-cell *matCellDef="let element"> <img style="width: 200px; height: 150px;"[src]="element.picture" /> </td>
+  </ng-container>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header >Name</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
+  </ng-container>
+  
+  
+  
+  <ng-container matColumnDef="status">
+  <mat-header-cell *matHeaderCellDef  mat-sort-header >Price</mat-header-cell>
+  <mat-cell *matCellDef="let element">{{ element.price | number }} EUR Per night</mat-cell>
+  </ng-container>
+  
+  <ng-container matColumnDef="price">
+  <mat-header-cell *matHeaderCellDef  mat-sort-header >Status</mat-header-cell>
+  <mat-cell *matCellDef="let element">{{ element.status }}</mat-cell>
+  </ng-container>
+    <ng-container matColumnDef="date">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header >Date</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.date | date }}</mat-cell>
+    </ng-container>
+   
+    <ng-container matColumnDef="rating">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header >Rating</mat-header-cell>
+      <td mat-cell *matCellDef="let element">
+        <app-star-rating fxFlex="270px"[rating]="element.rating" [isEditable] = "false" [dataSet] = "dataSet"></app-star-rating>
+      </td>
+      
+  </ng-container>
+    
+  
+   
+    
+  
+    <!-- Definicija reda tabele kao red zaglavlja tabele (header)
+        pozivamo i redove podataka - automatski, na osnovu vrednosti celija
+    -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row (click)="goToPage(rows.id)" *matRowDef="let rows; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  
+  

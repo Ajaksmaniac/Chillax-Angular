@@ -24,6 +24,7 @@
     "@angular/router": "^9.1.7",
     "angular-rating-star": "^1.0.4",
     "angular-star-rating": "^4.0.0-beta.3",
+    "angular2-multiselect-dropdown": "^4.6.3",
     "css-star-rating": "^1.2.4",
     "ng-starrating": "^1.0.20",
     "rxjs": "~6.5.4",

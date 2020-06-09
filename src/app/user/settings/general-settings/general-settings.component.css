@@ -1,0 +1,21 @@
+#general-details-form{
+  
+    height: 400px;
+}
+.material-icons {
+    font-size: 100px;
+    color: black;
+    background-color: white;
+   
+   
+}
+.form-field{
+    padding:20px;;
+}
+.select-interest{
+    width: 300px;
+    height: 100px;
+}
+.singup-form{
+    height: 1000px;
+}
