@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { User, UserServiceModule } from 'src/app/auth/user-service.module';
+
 import { Router } from '@angular/router';
 import { PostsService } from 'src/app/search/post.servise';
 import { FormControl, NgForm } from '@angular/forms';
+import { AuthService, User } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-general-settings',
@@ -12,14 +13,17 @@ import { FormControl, NgForm } from '@angular/forms';
 export class GeneralSettingsComponent implements OnInit {
   
  
-  constructor(private userService: UserServiceModule, private router : Router,private postsService : PostsService) { }
+  constructor(private userService: AuthService, private router : Router,private postsService : PostsService) {
+    this.userService.user.subscribe(user => this.currentUser = user);
+    console.log(this.currentUser)
+   }
   
   dropdownList = [];
   selectedItems = [];
   dropdownSettings = {};
 
+  logged : Boolean = false;
   currentUser : User = null;
-  logged : boolean = false;
   //manages form fields values
   firstName = new FormControl('');
   lastName = new FormControl('');
@@ -27,15 +31,18 @@ export class GeneralSettingsComponent implements OnInit {
   location = new FormControl('');
   //interests = new FormControl('');
   ngOnInit(): void {
-    this.userService.currentUser.subscribe(user => this.currentUser = user);
-    this.userService.logged.subscribe(user => this.logged = user);
-    if(!this.logged){
-      this.router.navigate(['']);
-    }else{
-      this.firstName.setValue(this.currentUser.firstName);
-      this.lastName.setValue(this.currentUser.lastName);
-      this.birthDate.setValue(this.currentUser.date);
-      this.location.setValue(this.currentUser.location);
+    //this.userService.user.subscribe(user => this.currentUser = user);
+    //this.userService.logged.subscribe(logged => this.logged = logged);
+   console.log(this.currentUser)
+   this.userService.user.subscribe(user =>{
+    this.firstName.setValue(user.firstName);
+    this.lastName.setValue(user.lastName);
+    this.birthDate.setValue(user.date);
+    this.location.setValue(user.location);
+    console.log(user.likes);
+    this.selectedItems = user.likes;
+   });
+     
      // this.interests.setValue(this.currentUser.likes);
       this.dropdownList = [
         {"id":1,"itemName":"apartment"},
@@ -64,16 +71,22 @@ export class GeneralSettingsComponent implements OnInit {
         maxHeight: "300"
        
       };      
-    }
+    
     
   }
   onSubmit(form: NgForm){
+    this.userService.user.subscribe(user =>{
+    const data = {
+        firstName : this.firstName.value,
+        lastName : this.lastName.value,
+        date : this.birthDate.value,
+        location : this.location.value,
+        likes : this.selectedItems
+
+    }
+    this.userService.updateUser(user.uid,data);
     
-      this.currentUser.firstName =  this.firstName.value;
-      this.currentUser.lastName = this.lastName.value;
-      this.currentUser.date = this.birthDate.value;
-      this.currentUser.location = this.location.value;
-      
+  });
       this.router.navigate(['']);
   }
   onItemSelect(item:any){

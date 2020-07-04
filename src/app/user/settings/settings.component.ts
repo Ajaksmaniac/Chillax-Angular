@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserServiceModule, User } from 'src/app/auth/user-service.module';
+import { UserServiceModule } from 'src/app/auth/user-service.module';
 import { Router } from '@angular/router';
 import { PostsService } from 'src/app/search/post.servise';
+import { AuthService, User } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-settings',
@@ -9,15 +10,19 @@ import { PostsService } from 'src/app/search/post.servise';
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent implements OnInit {
-
-  constructor(private userService: UserServiceModule, private router : Router,private postsService : PostsService) { }
-  logged : boolean = false;
+  logged : Boolean = false;
   currentUser : User = null;
+  constructor(private userService: AuthService, private router : Router,private postsService : PostsService) { 
+    this.userService.user.subscribe(user => this.currentUser = user);
+    if(!this.userService.user){
+      this.router.navigate(['']);
+    }
+  
+
+  }
+
   ngOnInit(): void {
-    this.userService.logged.subscribe(user => this.logged = user);
-    this.userService.currentUser.subscribe(user => this.currentUser = user);
-    //In case non logged user triess to acces this component
-    if(!this.logged){
+    if(!this.userService.user){
       this.router.navigate(['']);
     }
   }

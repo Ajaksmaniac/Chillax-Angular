@@ -18,9 +18,9 @@ export class ChangePasswordSettingsComponent implements OnInit {
     this.userService.currentUser.subscribe(user => this.currentUser = user);
     this.userService.logged.subscribe(user => this.logged = user);
 
-    if(!this.logged){
+   /* if(!this.logged){
       this.router.navigate(['']);
-    }
+    }*/
   }
 
 

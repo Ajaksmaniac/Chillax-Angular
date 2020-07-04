@@ -1,22 +1,22 @@
 <mat-toolbar  fxFlexAlign="center" color="warn" fxLayoutAlign="center">
-    <p fxFlex fxLayoutAlign="start"style="margin:15px;">Villas</p>
+    <p fxFlex fxLayoutAlign="start"style="margin:15px;">Favorites</p>
     
       
    
   </mat-toolbar>
-  <div  fxLayoutAlign="center center" *ngIf="this.currentUser.favorites.length > 0;else noFavorites">
+  <div  fxLayoutAlign="center center" >
     <mat-form-field fxFlex="25%">
     <!--
         keyup: otpusta taster tastature 
         doFilter: prihvata ono sto je korisnik uneo preko objekta dogadjaja ($event.target.value) generisanog u pozadini
     -->
-        <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
+        <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter" value=" ">
        
   
     </mat-form-field>
     <mat-paginator [pageSize] = "10" [pageSizeOptions]="[2,4,6,10,20,100]"></mat-paginator>
   </div>
-  <mat-table [dataSource]="postsSource" matSort *ngIf="this.currentUser.favorites.length > 0">
+  <mat-table [dataSource]="postsSource" matSort >
     <!-- definicija sablona kolone table kao zaglavlje kolone (odgovara header-u) i vrednost celije kolone -->
     <ng-container matColumnDef="picture">
       <mat-header-cell *matHeaderCellDef  mat-sort-header >Picture</mat-header-cell>

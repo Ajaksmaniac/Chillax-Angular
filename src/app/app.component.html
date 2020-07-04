@@ -92,7 +92,7 @@
           <a *ngIf="logged == false" mat-button   routerLink="/login">Login</a>
      
           <a mat-button   routerLink="/search">Search places</a>
-         
+        
          
         </div>
         <span  *ngIf="logged" mat-list-item class="material-icons"   fxLayoutAlign="right"  fxHide.xs>
@@ -104,6 +104,7 @@
           <mat-option routerLink="favorites" value ="favorites"><mat-icon>stars</mat-icon> My favorites</mat-option>
          <mat-option routerLink="bookings" value ="bookings"><mat-icon>bookmarks</mat-icon> My bokings</mat-option>
           <mat-option  routerLink="settings" value ="setting"><mat-icon>settings</mat-icon>Settings</mat-option>
+          <mat-option  routerLink="add-place" value ="setting" *ngIf="currentUser.admin"><mat-icon>settings</mat-icon>Add Place</mat-option>
           <mat-option (click)="logout()"  value ="logout"><mat-icon>exit_to_app</mat-icon>Logout</mat-option>
 
           </mat-select>

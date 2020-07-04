@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {PostsService} from './post.servise';
 import {Router} from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { User, UserServiceModule } from '../auth/user-service.module';
+
+import { AuthService, User } from '../auth/auth.service';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -11,14 +12,28 @@ import { User, UserServiceModule } from '../auth/user-service.module';
 export class SearchComponent implements OnInit {
  /* service : PostsService;
   data = this.service.getAllPosts() ;*/
-  logged : boolean = false;
+  logged : Boolean = false;
   currentUser : User = null;
   
-  constructor( private router:Router,private userService: UserServiceModule) { }
+  constructor( private router:Router,private userService: AuthService) {
+    this.userService.user.subscribe(user =>{
+      if(user){
+        this.currentUser = user
+        this.logged = true;
+      }
+    
+    });
+     
+   }
 
   ngOnInit(): void {
-    this.userService.logged.subscribe(user => this.logged = user);
-    this.userService.currentUser.subscribe(user => this.currentUser = user);
+    this.userService.user.subscribe(user =>{
+      if(user){
+        this.currentUser = user
+        this.logged = true;
+      }
+    
+    });
     
   }
   searchByRelaxationName(form: NgForm) {

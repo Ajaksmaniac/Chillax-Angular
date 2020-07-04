@@ -25,6 +25,7 @@ import { GeneralSettingsComponent } from './user/settings/general-settings/gener
 import { EmailSettingsComponent } from './user/settings/email-settings/email-settings.component';
 import { ChangePasswordSettingsComponent } from './user/settings/change-password-settings/change-password-settings.component';
 import { CloseAccountSettingsComponent } from './user/settings/close-account-settings/close-account-settings.component';
+import { AddPlaceComponent } from './add-place/add-place.component';
 const routes: Routes = [
 
   { path: 'signup', component: SignupComponent },
@@ -46,7 +47,8 @@ const routes: Routes = [
   { path: 'search/page/:id', component: ItemPageComponent },
   { path: 'favorites', component: FavoritesComponent },
   { path: 'bookings', component: BookingsComponent },
-  { path: 'settings', component: SettingsComponent }
+  { path: 'settings', component: SettingsComponent },
+  { path: 'add-place', component: AddPlaceComponent }
  
 
 

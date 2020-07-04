@@ -5,6 +5,9 @@ import {Post} from 'src/app/search/post.model';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import {Router} from '@angular/router';
+import { PostServiceService } from '../../post-service.service';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-casinos',
@@ -15,13 +18,15 @@ export class CasinosComponent implements OnInit, AfterViewInit {
   displayedColumns = ["picture","name","date","rating"];
   dataSet = {starSize: 20,
     showLabels: false};
-  postsSource = new MatTableDataSource<Post>();
+  postsSource = new MatTableDataSource();
   @ViewChild(MatSort) sort : MatSort;
   @ViewChild(MatPaginator) paginator : MatPaginator;
-  constructor(private postsService : PostsService, private router : Router) { }
-  
-  ngOnInit(): void {
-    this.postsSource.data = this.postsService.getAllPostBySubType('casino');
+  constructor(private postsService : PostServiceService, private router : Router) { }
+  destroy$:Subject<void> = new Subject();
+  ngOnInit() {
+  this.postsService.getAllPostBySubType('casino').valueChanges().pipe(
+    takeUntil(this.destroy$)
+  ).subscribe(data => this.postsSource.data = data)
     console.log(this.postsSource.data);
   }
  

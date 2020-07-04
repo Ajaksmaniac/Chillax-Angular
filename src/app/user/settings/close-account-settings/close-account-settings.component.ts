@@ -21,9 +21,9 @@ export class CloseAccountSettingsComponent implements OnInit {
   ngOnInit(): void {
     this.userService.currentUser.subscribe(user => this.currentUser = user);
     this.userService.logged.subscribe(user => this.logged = user);
-    if(!this.logged){
+   /* if(!this.logged){
       this.router.navigate(['']);
-    }
+    }*/
   }
 
   onSubmit(form: NgForm){

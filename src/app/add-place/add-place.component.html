@@ -1,0 +1,123 @@
+
+
+<ng-container>
+    <form  [formGroup]="addPostForm"  (ngSubmit)="submit()"  fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <h3>AddPlace</h3>
+        <mat-form-field>
+            <mat-label for="name">Place Name</mat-label>
+            <input type="text" matInput formControlName="name">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label for="parking">Does Place have parking?</mat-label>
+            <mat-select placeholder="Choose One" required ngModel formControlName="parking">
+                <mat-option value="true">Yes</mat-option>
+                <mat-option value="false">No</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label for="pets">Are pets alowed?</mat-label>
+            <mat-select placeholder="Choose One" required ngModel formControlName="pets">
+                <mat-option value="true">Yes</mat-option>
+                <mat-option value="false">No</mat-option>
+            </mat-select>
+        </mat-form-field>
+       
+        <mat-form-field>
+            <mat-label for="picture">Place picture</mat-label>
+            <mat-select placeholder="Choose place picture" required ngModel formControlName="picture">
+                <mat-option value="assets/img/hotel.jpg">Hotel</mat-option>
+                <mat-option value="assets/img/HotelImages/hotel1.jpg">Hotel2</mat-option>
+                <mat-option value="assets/img/HotelImages/hotel2.jpg">Hotel3</mat-option>
+                <mat-option value="assets/img/HotelImages/hotel3.jpg">Hotel4</mat-option>
+                <mat-option value="assets/img/HotelImages/hotel4.jpg">Hotel5</mat-option>
+                <mat-option value="assets/img/apartment.jpg">Apartment</mat-option>
+                <mat-option value="assets/img/cabin.jpg">Cabin</mat-option>
+                <mat-option value="assets/img/casino.jpg">Casino</mat-option>
+                <mat-option value="assets/img/coffe-shop.jpg">Coffe Shop</mat-option>
+                <mat-option value="assets/img/hostel.jpg">Hostel</mat-option>
+                <mat-option value="assets/img/park.jpg">Park</mat-option>
+                <mat-option value="assets/img/pub.jpg">Pub</mat-option>
+                <mat-option value="assets/img/resort.jpg">Resort</mat-option>
+                <mat-option value="assets/img/restaurant.jpg">Restaurant</mat-option>
+                <mat-option value="assets/img/villa.jpg">Villa</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label for="rating">Place rating</mat-label>
+            <input type="text" matInput formControlName="rating">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label for="restaurant">Does place have restaurant?</mat-label>
+            <mat-select placeholder="Choose One" required ngModel formControlName="restaurant">
+                <mat-option value="true">Yes</mat-option>
+                <mat-option value="false">No</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label for="status">Place Availability</mat-label>
+            <mat-select placeholder="Choose One" required ngModel formControlName="status">
+                <mat-option value="reserved">Reserved</mat-option>
+                <mat-option value="available">Available</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label for="subtype">Place Subtype</mat-label>
+            <mat-select placeholder="Choose One" required ngModel formControlName="subtype">
+                <mat-option value="apartment">Apartment</mat-option>
+                <mat-option value="cabin">Cabin</mat-option>
+                <mat-option value="hostel">Hostel</mat-option>
+                <mat-option value="hotel">Hotel</mat-option>
+                <mat-option value="resort">Resort</mat-option>
+                <mat-option value="villa">Villa</mat-option>
+                <mat-option value="casino">Casino</mat-option>
+                <mat-option value="park">Park</mat-option>
+                <mat-option value="pubs">Pub</mat-option>
+                <mat-option value="restaurant">Restaurant</mat-option>
+                <mat-option value="zoo">Zoo</mat-option>
+                <mat-option value="coffe shop">Coffe Shop</mat-option>
+
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label for="swimingPool">Does place have Swiming Pool?</mat-label>
+            <mat-select placeholder="Choose One" required ngModel formControlName="swimingPool">
+                <mat-option value="true">Yes</mat-option>
+                <mat-option value="false">No</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label for="type">Place type</mat-label>
+            <mat-select placeholder="Choose One" required ngModel formControlName="type">
+                <mat-option value="entertainement">Entertainement</mat-option>
+                <mat-option value="stay">Stay</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+             
+        <mat-form-field>
+            <mat-select placeholder="Choose location" required ngModel formControlName="location">
+                <mat-option value="location1">Location 1</mat-option>
+                <mat-option value="location2">Location 2</mat-option>
+                <mat-option value="location3">Location 3</mat-option>
+                <mat-option value="location4">Location 4</mat-option>
+                <mat-option value="location5">Location 5</mat-option>
+                <mat-option value="location6">Location 6</mat-option>
+                <mat-option value="location7">Location 7</mat-option>
+                <mat-option value="location8">Location 8</mat-option>
+                <mat-option value="location9">Location 9</mat-option>
+                <mat-option value="location10">Location 10</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button mat-raised-button color="accent" type="submit" >Submit</button>
+    
+    </form>
+
+
+
+</ng-container>

@@ -46,6 +46,13 @@ import { ChangePasswordSettingsComponent } from './user/settings/change-password
 import { CloseAccountSettingsComponent } from './user/settings/close-account-settings/close-account-settings.component';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { RecommendedComponent } from './search/recommended/recommended.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabase, AngularFireDatabaseModule } from '@angular/fire/database';
+import { environment} from '../environments/environment';
+import { PostServiceService } from './search/post-service.service';
+import {AngularFireAuthModule} from '@angular/fire/auth'
+import { AuthService } from './auth/auth.service';
+import { AddPlaceComponent } from './add-place/add-place.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,7 +85,8 @@ import { RecommendedComponent } from './search/recommended/recommended.component
     EmailSettingsComponent,
     ChangePasswordSettingsComponent,
     CloseAccountSettingsComponent,
-    RecommendedComponent
+    RecommendedComponent,
+    AddPlaceComponent
 
 
 
@@ -96,10 +104,14 @@ import { RecommendedComponent } from './search/recommended/recommended.component
     StarRatingModule,
     ReactiveFormsModule,
     AngularMultiSelectModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    ReactiveFormsModule
     
     
   ],
-  providers: [PostsService, UserServiceModule],
+  providers: [PostsService, UserServiceModule, PostServiceService,AuthService],
   bootstrap: [AppComponent],
   entryComponents: [BookItemComponent]
 })

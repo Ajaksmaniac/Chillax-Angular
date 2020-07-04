@@ -1,10 +1,10 @@
 <mat-toolbar  fxFlexAlign="center" color="warn" fxLayoutAlign="center">
-    <p fxFlex fxLayoutAlign="start"style="margin:15px;">Villas</p>
+    <p fxFlex fxLayoutAlign="start"style="margin:15px;">My Bookings</p>
     
       
    
   </mat-toolbar>
-  <div  fxLayoutAlign="center center" *ngIf="this.currentUser.bookings.length > 0; else noBookings">
+  <div  fxLayoutAlign="center center" >
     <mat-form-field fxFlex="25%" >
     <!--
         keyup: otpusta taster tastature 
@@ -16,12 +16,12 @@
     </mat-form-field>
     <mat-paginator [pageSize] = "10" [pageSizeOptions]="[2,4,6,10,20,100]"></mat-paginator>
   </div>
-  <mat-table [dataSource]="postsSource" matSort  *ngIf="this.currentUser.bookings.length > 0; else noBookings">
+  <mat-table [dataSource]="postsSource" matSort  >
     <!-- definicija sablona kolone table kao zaglavlje kolone (odgovara header-u) i vrednost celije kolone -->
    
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef  mat-sort-header >Name</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{ element.place.name }}</mat-cell>
+      <mat-cell *matCellDef="let element">{{ element.placeName }}</mat-cell>
   </ng-container>
   
   
@@ -29,7 +29,7 @@
   
     <ng-container matColumnDef="date">
         <mat-header-cell *matHeaderCellDef  mat-sort-header >Dates Booked</mat-header-cell>
-        <mat-cell *matCellDef="let element"> From {{ element.fromDate | date }} To {{element.toDate | date}} </mat-cell>
+        <mat-cell *matCellDef="let element"> From {{ element.fromDate  | date}} To {{element.toDate | date}} </mat-cell>
     </ng-container>
     
     <ng-container matColumnDef="price">
@@ -48,7 +48,7 @@
       <app-star-rating fxFlex="270px"[rating]="element.place.rating" [isEditable] = "true" [dataSet] = "dataSet"></app-star-rating>
     </td>
     
-</ng-container>
+  </ng-container>
   
    
     
@@ -57,7 +57,7 @@
         pozivamo i redove podataka - automatski, na osnovu vrednosti celija
     -->
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row (click)="goToPage(rows.place.id)" *matRowDef="let rows; columns: displayedColumns;"></mat-row>
+    <mat-row (click)="goToPage(rows.placeId)" *matRowDef="let rows; columns: displayedColumns;"></mat-row>
   </mat-table>
   
   <ng-template #noBookings >

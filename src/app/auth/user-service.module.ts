@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import { Post } from '../search/post.model';
 import { PostsService } from '../search/post.servise';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { PostServiceService } from '../search/post-service.service';
+import { element } from 'protractor';
+import { AuthService } from './auth.service';
 
 
 
@@ -17,13 +21,13 @@ export interface User{
   date: Date;
   location : "location1" | "location2" | "location3" | "location4" | "location5" | "location6" |
              "location7" | "location8" | "location9" | "location10" ;
-  favorites?: Array<number>;//IDs of favorite posts
-  bookings? : Array<number>;
+  favorites?: Array<any>;//IDs of favorite posts
+  bookings? : Array<any>;
   likes?: Array<string>;
 }
 
 export interface booking{
-  id:number;
+ 
   placeId: number; // booking id
   place ?: Post;
   fromDate : Date;
@@ -33,7 +37,8 @@ export interface booking{
 }
 @Injectable()
 export class UserServiceModule {
-  public ps = new  PostsService;
+  //private db : AngularFireDatabase;
+ // public ps = new  PostsService(this.db);
 
 
   //sets the boolean value to be observed by other components
@@ -42,11 +47,7 @@ export class UserServiceModule {
 
   logged = this.loggedSource.asObservable();
   currentUser = this.loggedUserSourse.asObservable();
-
-  constructor() { 
-    
-   
-  }
+  
 
   setLoggedTrue(){
     this.loggedSource.next(true);
@@ -104,7 +105,7 @@ export class UserServiceModule {
       email: "admin@admin.com",
       password: "admin1234",
       date: new Date("2019-12-25 10:03"),
-      favorites : [1,4,55,45,3,5],
+      favorites : ['-MA7XiU9VpwKYFWhVB2W','-MA7XiU9VpwKYFWhVB2V','-MA7XiU7tTEVbMDqcY8g','-MA7XiU7tTEVbMDqcY8e','-MA7XiU4f96iiBQ27aWX','-MA7XiU3SYMSDyq0QL8P'],
       bookings: [4,5,6,7],
       location: "location5",
       likes: ["coffe shop", "villa"]
@@ -112,20 +113,40 @@ export class UserServiceModule {
 
   ]
   
-
+  private dbPath = '/users';
+  
+  private usersRef :AngularFireList<User>
+  constructor(private postsService : PostServiceService, private db : AngularFireDatabase) {
+    this.usersRef = db.list(this.dbPath);
+    /*UserServiceModule.dummyUserList.forEach(element =>{
+      this.usersRef.push(element);
+    }); */
+    
+   
+  }
 
   public getAllFavoritePostsForUser(userId : number){
      var user = UserServiceModule.dummyUserList.find(userToFind => userToFind.id == userId);
-     console.log(user);
+     //console.log(user);
     const arr1 = user.favorites;
     const result = Array<Post>();
-    for(let i of arr1){
-      result.push(this.ps.getPostById(i.toString()));
+    for(var  i  of arr1){
+      
+     // console.log(i)
+       this.postsService.getPostById(i).valueChanges().pipe().subscribe(data =>{
+        //console.log(data);
+       var newPost : Post = data;
+        result.push(newPost);
+       } );
+     
+        //result.push(post);
+       
+      
     }
       console.log(result);
      return result;
   }
-  public getAllBookingForUser(userId : number){
+ /* public getAllBookingForUser(userId : number){
     var user = UserServiceModule.dummyUserList.find(userToFind => userToFind.id == userId);
     console.log(user);
    const arr1  = user.bookings;
@@ -134,7 +155,7 @@ export class UserServiceModule {
    // var book : booking = {element.id,element.placeId,this.ps.getPostById(element.placeId),element.fromDate,element.toDate};
    const booking = this.getBookingById(book);
    if(booking.place == null){
-    booking.place = this.ps.getPostById(booking.placeId.toString());
+  this.postsService.getPostById(booking.placeId.toString()).valueChanges().pipe().subscribe(data => booking.place = data);
    }
   
    
@@ -153,9 +174,9 @@ export class UserServiceModule {
   });
     console.log(result);
     return result;
- }
+ }*/
  
- public getBookingById(id : number){
+ /*public getBookingById(id : number){
   var foundBooking : booking; 
   UserServiceModule.dummyBookingsist.forEach(booking => {
     if(booking.id == id){
@@ -164,7 +185,7 @@ export class UserServiceModule {
 
   });
   return foundBooking;
- }
+ }*/
   //dohvatamo korisnicko ime iz objekta interejsa korisnika
   getUserName(user: User) :string {
     return user.email;
@@ -208,55 +229,8 @@ export class UserServiceModule {
   }
 
   //Bookking list
-  static dummyBookingsist: Array<booking> = [
-    {
 
-      id:1,
-      placeId: 1 ,
-      fromDate: new Date("2020-04-15 10:03"),
-      toDate: new Date("2020-04-25 10:03")
-     
-    },
-    {
-      id:2,
-      placeId: 15 ,
-      fromDate: new Date("2020-03-16 10:03"),
-      toDate: new Date("2020-03-20 10:03")
-    },
-    {
-      id:3,
-      placeId: 6 ,
-      fromDate: new Date("2020-05-9 10:03"),
-      toDate: new Date("2020-05-13 10:03")
-    },
-    {
-      id:4,
-      placeId: 5 ,
-      fromDate: new Date("2020-05-9 10:03"),
-      toDate: new Date("2020-05-13 10:03")
-    },
-    {
-      id:5,
-      placeId: 17 ,
-      fromDate: new Date("2020-05-9 10:03"),
-      toDate: new Date("2020-05-13 10:03")
-    },
-    {
-      id:6,
-      placeId: 18 ,
-      fromDate: new Date("2020-05-9 10:03"),
-      toDate: new Date("2020-05-13 10:03")
-    },
-    {
-      id:7,
-      placeId: 20,
-      fromDate: new Date("2020-05-9 10:03"),
-      toDate: new Date("2020-05-13 10:03")
-    },
-
-  ]
-
-  addBooking(placeId : number, fromDate:Date, toDate:Date, place: Post, userId: number){
+ /* addBooking(placeId : number, fromDate:Date, toDate:Date, place: Post, userId: number){
     var maxId = 0;
     UserServiceModule.dummyBookingsist.forEach(book => {
       if(maxId < book.id){
@@ -271,7 +245,7 @@ export class UserServiceModule {
 
     //console.log(book);
    
-  }
+  }*/
   getAllBookingsByUser(user : User){
     
       return user.bookings;

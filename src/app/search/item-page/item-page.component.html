@@ -1,5 +1,5 @@
 <mat-toolbar  fxFlexAlign="center" color="warn" fxLayoutAlign="center">
-    <p fxFlex fxLayoutAlign="start"style="margin:15px;">{{post.type}} > {{post.subtype}}</p>
+    <p fxFlex fxLayoutAlign="start"style="margin:15px;">{{this.post.type}} > {{this.post.subtype}}</p>
     
 
       
@@ -7,46 +7,61 @@
 
    
   </mat-toolbar>
+  
   <section class="item-page-section" fxLayout fxLayoutAlign="start start" >
       
-       
+ 
         <div id="post-image" fxLayout="column" fxLayoutAlign="start start" >
              <img fxLayout="column" fxLayoutAlign="start start"  [src]="post.picture" />
 
         </div>
         
         <div id="post-description" fxLayout="column" fxLayoutAlign="start start" >
+            <button mat-fab color="warn" aria-label="Example icon button with a delete icon" *ngIf="this.currentUser && this.currentUser.admin" (click)="deletePost()">
+                <mat-icon>delete</mat-icon>
+              </button>
             <span *ngIf="logged">
+                
                 <button *ngIf="!inList" mat-button color="accent" (click)="addToFavorites()"><mat-icon>star-border</mat-icon> Add to favorites</button>
                 <button *ngIf="inList" mat-button color="accent"  (click)="removeFromFavorites()"><mat-icon>star-border</mat-icon> Remove from favorites</button>
             </span>
             
                 <app-star-rating  style="width:200px; height: 100px;" [rating]="post.rating" [isEditable] = "false" [dataSet] = "dataSet"></app-star-rating>
             
-            <h1>{{post.name}}</h1>
-            <h1>Date of Opening {{post.date.getFullYear()}}</h1>
+            <h1>{{this.post.name}}</h1>
+            <h1>Date of Opening {{date}}</h1>
             <span fxLayout="row">
-                <mat-icon>local_parking</mat-icon>
-                <p >{{parking}}</p>
+                <span class="material-icons">
+                    local_parking
+                    </span>
+                <p >{{this.post.parking}}</p>
                 
             </span>
             <span fxLayout="row">
-                <mat-icon>pets</mat-icon>
-                <p >{{pets}}</p>
+                <span class="material-icons">
+                    pets
+                    </span>
+                <p >{{this.post.pets}}</p>
                 
             </span>
-            <span *ngIf="this.post.type === 'stay' " fxLayout="row">
-                <mat-icon>restaurant</mat-icon>
-                <p >{{restaurant}}</p>
+            <span *ngIf="this.post.type == 'stay' " fxLayout="row">
+                <span class="material-icons">
+                    restaurant
+                    </span>
+                <p >{{this.post.restaurant}}</p>
                 
             </span>
-            <span *ngIf="this.post.type === 'stay'" fxLayout="row">
-                <mat-icon>pool</mat-icon>
-                <p >{{swimingPool}}</p>
+            <span *ngIf="this.post.type == 'stay'" fxLayout="row">
+                <span class="material-icons">
+                    pool
+                    </span>
+                <p >{{this.post.swimingPool}}</p>
                 
             </span>
-            <span *ngIf="this.post.type === 'stay'" fxLayout="row">
-                <mat-icon>euro_symbol</mat-icon>
+            <span *ngIf="this.post.type == 'stay'" fxLayout="row">
+                <span class="material-icons">
+                    euro_symbol
+                    </span>
                 <p >{{post.price}} Per night</p>
                 
             </span>

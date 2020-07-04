@@ -5,6 +5,9 @@ import {Post} from 'src/app/search/post.model';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
+import { PostServiceService } from '../../post-service.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-hotels',
@@ -20,10 +23,12 @@ export class HotelsComponent implements OnInit, AfterViewInit {
   postsSource = new MatTableDataSource<Post>();
   @ViewChild(MatSort) sort : MatSort;
   @ViewChild(MatPaginator) paginator : MatPaginator;
-  constructor(private postsService : PostsService, private router : Router) { }
-  
+  constructor(private postsService : PostServiceService, private router : Router) { }
+  destroy$:Subject<void> = new Subject();
   ngOnInit(): void {
-    this.postsSource.data = this.postsService.getAllPostBySubType('hotel');
+   this.postsService.getAllPostBySubType('hotel').valueChanges().pipe(
+    takeUntil(this.destroy$)
+  ).subscribe(data => this.postsSource.data = data);
     console.log(this.postsSource.data);
   }
  

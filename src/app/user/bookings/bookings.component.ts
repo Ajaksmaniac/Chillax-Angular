@@ -8,6 +8,9 @@ import { MatPaginator } from '@angular/material/paginator';
 
 
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
+import { Subject } from 'rxjs';
+import { PostServiceService } from 'src/app/search/post-service.service';
 
 
 @Component({
@@ -19,8 +22,9 @@ export class BookingsComponent implements OnInit {
 
   logged : boolean = false;
   currentUser : User = null;
+  destroy$:Subject<void> = new Subject();
 //bookings : booking
-  constructor(private userService: UserServiceModule, private router : Router,private postsService : PostsService) { }
+  constructor(private userService: AuthService, private router : Router,private postsService : PostServiceService) { }
 
   displayedColumns = ["name","date","price", "active","rating"];
 
@@ -38,15 +42,18 @@ export class BookingsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator : MatPaginator;
 
   ngOnInit(): void {
-    this.userService.logged.subscribe(user => this.logged = user);
-    this.userService.currentUser.subscribe(user => this.currentUser = user);
+    this.userService.user.subscribe(user =>{
+      this.userService.getAllBookingsByUser(user.uid).then((data) =>{
+      this.postsSource.data = this.userService.getAllBookingsFromList(data);
+      })
+    });
     //In case non logged user tries to acces this component
     if(!this.logged){
-      this.router.navigate(['']);
+     // this.router.navigate(['']);
     }else{
       if(this.currentUser.bookings != null || this.currentUser.bookings != undefined){
         if(this.currentUser.bookings.length > 0){
-          this.postsSource.data = this.userService.getAllBookingForUser(this.currentUser.id);
+          //this.postsSource.data = this.userService.getAllBookingForUser(this.currentUser.id);
         }
         
        

@@ -38,3 +38,5 @@
 
 -dodati broj datih tipova relaksacija u okoloni  u search karticama - DONE
 -napraviti edit sa predstojece rezervacije(promena datuma i rating) - DONE
+
+-Admini mogu da dodaju brisu i uredjuju mesta za relaksaciju

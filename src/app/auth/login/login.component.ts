@@ -2,6 +2,8 @@ import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserServiceModule, User } from '../user-service.module';
+import { AuthService } from '../auth.service';
+
 
 
 @Component({
@@ -16,7 +18,7 @@ export class LoginComponent implements OnInit {
   
  // @Output() onUserLogged: EventEmitter<boolean> = new EventEmitter<boolean>();
  // @Output() loggedUser: EventEmitter<User> = new EventEmitter<User>();
-  constructor(private userService: UserServiceModule, private router: Router) { }
+  constructor(private userService: AuthService, private router: Router) { }
 
   ngOnInit() {
     
@@ -26,8 +28,9 @@ export class LoginComponent implements OnInit {
     var email = form.value.email;
     var password = form.value.password;
 
-    var user = this.userService.getUser(email);
-    if(!user){
+    this.userService.login(email,password);
+    
+    /*if(!user){
       this.errorExists = true;
       this.errorText = "There is no registered user with this email! " + email;
       return;
@@ -44,5 +47,7 @@ export class LoginComponent implements OnInit {
     this.userService.setCurrentUser(user);
     //this.loggedUser.emit(user);
    this.router.navigate(['']);
+    */
   }
+  
 }

@@ -1,10 +1,12 @@
 import {Post} from './post.model';
-
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
 
 
 
 export class PostsService {
-    public posts : Post [] = [
+   /* public posts : Post [] = [
         {id: '1',swimingPool:true,parking:true,pets:false,restaurant:true, name:"Hotel Srbija", type: "stay",subtype: "hotel", status:"available",date:new Date, price:140, picture: "assets/img/HotelImages/hotel1.jpg",rating:4,location:"location1"},
         {id: '2',swimingPool:false,parking:true,pets:false,restaurant:false, name:"Hotel Beograd", type: "stay",subtype: "hotel", status:"available",date:new Date, price:140, picture: "assets/img/HotelImages/hotel2.jpg",rating:4,location:"location1"},
         {id: '3',swimingPool:false,parking:false,pets:true,restaurant:true, name:"Villa Jelena", type: "stay",subtype: "villa", status:"reserved",date:new Date, price:140, picture: "assets/img/hotel.jpg",rating:4,location:"location2"},
@@ -68,43 +70,97 @@ export class PostsService {
 
 
     ];
+    private dbPath = '/posts';
+
+    postsRef: AngularFireList <Post> = null;
+  
+    constructor(private db: AngularFireDatabase) {
+      this.postsRef = db.list(this.dbPath);
+     }
+  
+
+
+  ;
     public getAllPostByInterestsAndLocation(interests:any,location:any){
         const result: Post[] = [];
-       this.posts.forEach(element => {
+        this.postsRef.valueChanges().subscribe(posts =>{
+            posts.forEach(element => {
             if(element.location == location || interests.includes(element.subtype)){
               result.push(element);
             }
+        })
         });
         return result;
         
     }
     public getAllPosts(){
-        return this.posts;
+        var result : Post[] = [];
+        this.postsRef.valueChanges().subscribe(posts =>{
+            posts.forEach(element => {
+                
+                    result.push(element);
+               
+            })
+          
+        });
+     
+        return result;
     }
     public getAllPostsByTypeAndSubtype(t1, t2){
+        var result : Post[] = [];
+        this.postsRef.valueChanges().subscribe(posts =>{
+            posts.forEach(element => {
+                if( element.type == t1 && element.subtype == t2){
+                    result.push(element);
+                }
+            });
+          
+        })
         
-        const result = this.posts.filter(post => post.type == t1 && post.subtype == t2);
         return result;
     }
     public getAllPostBySubType(subtype){
-        const result = this.posts.filter(post =>post.subtype == subtype);
+        var result : Post[] = [];
+        this.postsRef.valueChanges().subscribe(posts =>{
+            posts.forEach(element => {
+                if( element.subtype == subtype){
+                    result.push(element);
+                }
+            });
+          
+        })
+       
         return result;
     }
    
     public getPostsByName(name : string){
-        if(name  == undefined){
-            return this.posts;
-        }else{
-            const result = this.posts.filter(post => post.name.includes(name));
-            return result;
-        }
+        var result : Post[] = [];
+        this.postsRef.valueChanges().subscribe(posts =>{
+            posts.forEach(post => {
+                if( post.name.includes(name)){
+                    result.push(post);
+                }
+            });
+          
+        })
+       
+        return result;
        
     }
 
     public getPostById(id){
-        return this.posts.find(post => post.id == id);
+        var result : Post = null;
+        this.postsRef.valueChanges().subscribe(posts =>{
+            posts.forEach(post => {
+                if( post.id == id){
+                    result = post;
+                }
+            });
+          
+        })
+        return result;
     }
 
-
+*/
 
 }

@@ -2,9 +2,12 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { LoginComponent } from './auth/login/login.component';
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserServiceModule, User } from './auth/user-service.module';
-
-
+import { User } from './auth/auth.service';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { PostsService } from './search/post.servise';
+import { Observable } from 'rxjs';
+import { Post } from './search/post.model';
+import { AuthService } from './auth/auth.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,13 +17,35 @@ export class AppComponent implements OnInit {
 
   logged : boolean = false;;
   currentUser : User = null;
-
-  constructor(private userService: UserServiceModule, public route: ActivatedRoute, public router : Router){
-   
+  posts: Observable <Post>;
+  constructor(private userService: AuthService, public route: ActivatedRoute, public router : Router){
+  //  this.userService.addBooking();
+    this.userService.user.subscribe(user =>{
+      if(user){
+        this.currentUser = user
+        this.logged = true;
+      }
+    
+    }
+  );
+ 
+ if(this.currentUser){
+   this.logged = true;
+ }
   }
   ngOnInit(): void {
-   this.userService.logged.subscribe(log => this.logged = log);
-   this.userService.currentUser.subscribe(user => this.currentUser = user);
+  // this.userService.logged.subscribe(log => this.logged = log);
+        this.userService.user.subscribe(user =>{
+          if(user){
+            this.currentUser = user
+            this.logged = true;
+          }
+      }
+    );
+   
+   if(this.currentUser){
+     this.logged = true;
+   }
   }
 
 
@@ -28,6 +53,8 @@ export class AppComponent implements OnInit {
   
  logout(){
    this.userService.logout();
+   this.logged = false;
+   this.currentUser = null;
    this.router.navigate(['']);
  }
 
